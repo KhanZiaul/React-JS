@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ShowData from './ShowData';
 
 const DataLoad = () => {
     const[datas,setData] = useState([]);
@@ -9,7 +10,7 @@ const DataLoad = () => {
         .then(allData => setData(allData))
     },[]);
     return (
-        datas.map((singledata) => console.log(singledata))
+        datas.map((singledata) => <ShowData key={singledata.id} data={singledata}></ShowData>)
     );
 };
 
