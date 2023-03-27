@@ -1,11 +1,11 @@
-// normally data added in local storage
+// normally data added in local storage ------------------------
 
 // const LocalStorage = (id) => {
 
 //     localStorage.setItem(id,1);
 // };
 
-// dynamically data added in local storage
+// dynamically data added in local storage ----------------------
 
 const LocalStorage = (id) => {
 
