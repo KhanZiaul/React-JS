@@ -1,5 +1,5 @@
 import React from 'react';
-import  { LocalStorage, removeCartFromstorage } from './LocalStorage';
+import  { LocalStorage, removeAllCartFromstorage, removeCartFromstorage } from './LocalStorage';
 
 const ShowData = (props) => {
     const {id,name,company,gender} = props.data;
@@ -11,6 +11,9 @@ const ShowData = (props) => {
     const removeCart = (id) => {
        removeCartFromstorage(id);
     }
+    const removeAllCart = () => {
+       removeAllCartFromstorage();
+    }
 
     return (
         <div style={{border:'2px solid red', padding:'10px',textAlign:'center',margin:'10px'}}>
@@ -20,6 +23,7 @@ const ShowData = (props) => {
             <h5>Gender - {gender}</h5>
             <button onClick={() => handlerToCart(id)}>Add To localStorage</button>
             <button onClick={() => removeCart(id)}>Remove From localStorage</button>
+            <button onClick={() => removeAllCart()}>Remove From localStorage</button>
         </div>
     );
 };

@@ -73,4 +73,11 @@ const removeCartFromstorage = (id) => {
     }
 }
 
-export {LocalStorage,removeCartFromstorage};
+// remove all data from local storage
+
+const  removeAllCartFromstorage = () => {
+
+    localStorage.removeItem('client-cart');
+}
+
+export {LocalStorage,removeCartFromstorage,removeAllCartFromstorage};
