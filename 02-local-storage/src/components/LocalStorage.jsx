@@ -7,20 +7,51 @@
 
 // dynamically data added in local storage ----------------------
 
+// const LocalStorage = (id) => {
+
+//     let storedCart = localStorage.getItem(id);
+
+//     if(storedCart){
+
+//         let newquantity = parseInt(storedCart ) + 1; 
+
+//         localStorage.setItem(id,newquantity);  
+//     }
+//     else{
+
+//         localStorage.setItem(id,1);  
+//     }
+
+// };
+
+// dynamically added data as object in local storage ---------------
+
 const LocalStorage = (id) => {
 
-    let storedCart = localStorage.getItem(id);
+    let clientCart = {};
+
+    const storedCart = localStorage.getItem('client-cart');
 
     if(storedCart){
 
-        let newquantity = parseInt(storedCart )+ 1; 
-
-        localStorage.setItem(id,newquantity);  
+        clientCart = JSON.parse(storedCart);
     }
+
+    const quantity = clientCart[id];
+
+    if(quantity){
+
+        const newQuantity = quantity + 1 ;
+
+        clientCart[id] = newQuantity ;
+    }
+
     else{
 
-        localStorage.setItem(id,1);  
+        clientCart[id] = 1 ;
     }
+
+    localStorage.setItem('client-cart', JSON.stringify(clientCart)) ;
 
 };
 
