@@ -1,0 +1,44 @@
+[
+    {
+      "id": "6421c9844a2dc797d7c7fd0b",
+      "name": "Terrie Clark",
+      "gender": "female",
+      "company": "TWIIST",
+      "email": "terrieclark@twiist.com"
+    },
+    {
+      "id": "6421c984f99c9cabd6c99842",
+      "name": "Anne Yang",
+      "gender": "female",
+      "company": "MEDIFAX",
+      "email": "anneyang@medifax.com"
+    },
+    {
+      "id": "6421c9847f9561bd5c4354bd",
+      "name": "Hunter Whitfield",
+      "gender": "male",
+      "company": "OVATION",
+      "email": "hunterwhitfield@ovation.com"
+    },
+    {
+      "id": "6421c984e6943c92b0da68be",
+      "name": "Sweeney Dunn",
+      "gender": "male",
+      "company": "NORALI",
+      "email": "sweeneydunn@norali.com"
+    },
+    {
+      "id": "6421c984f2e6c40e9986701a",
+      "name": "Kerri Skinner",
+      "gender": "female",
+      "company": "ACRUEX",
+      "email": "kerriskinner@acruex.com"
+    },
+    {
+      "id": "6421c9841480e259bf1291f0",
+      "name": "Ray Santos",
+      "gender": "male",
+      "company": "ZILIDIUM",
+      "email": "raysantos@zilidium.com"
+    }
+  ]
