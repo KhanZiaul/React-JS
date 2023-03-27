@@ -55,4 +55,22 @@ const LocalStorage = (id) => {
 
 };
 
-export default LocalStorage;
+// remove sigle data from local storage
+
+const removeCartFromstorage = (id) => {
+
+    const storedCart = localStorage.getItem('client-cart');
+
+    if(storedCart){
+        let clientCart = JSON.parse(storedCart) ;
+
+        if(id in clientCart){
+
+            delete clientCart[id];
+
+            localStorage.setItem('client-cart', JSON.stringify(clientCart)) ;
+        }
+    }
+}
+
+export {LocalStorage,removeCartFromstorage};
