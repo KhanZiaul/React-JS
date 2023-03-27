@@ -9,6 +9,7 @@ const DataLoad = () => {
         .then(res => res.json())
         .then(allData => setData(allData))
     },[]);
+    
     return (
         datas.map((singledata) => <ShowData key={singledata.id} data={singledata}></ShowData>)
     );

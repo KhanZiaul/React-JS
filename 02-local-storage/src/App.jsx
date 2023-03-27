@@ -1,8 +1,4 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import DataLoad from './components/DataLoad'
-import viteLogo from '/vite.svg'
-
 function App() {
 
   return (
