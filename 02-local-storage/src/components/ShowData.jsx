@@ -1,10 +1,11 @@
 import React from 'react';
+import LocalStorage from './LocalStorage';
 
 const ShowData = (props) => {
     const {id,name,company,gender} = props.data;
 
     const handlerToCart = (id) => {
-        console.log(id);
+        LocalStorage(id);
     }
 
     return (
