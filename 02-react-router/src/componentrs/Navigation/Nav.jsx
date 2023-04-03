@@ -13,7 +13,7 @@ const Nav = () => {
 
               {/* Router Nav Link */} 
 
-            <NavLink className="nav-link" to={'/'}>Blogs</NavLink>
+            <NavLink className="nav-link" to={'/'}>Home</NavLink>
             <NavLink className="nav-link" to={'/contact'}>Contact</NavLink>
             <NavLink className="nav-link" to={'/about'}>About</NavLink>
 

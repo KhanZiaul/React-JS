@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 
 const Blogs = () => {
 
@@ -11,8 +12,11 @@ const Blogs = () => {
     },[])
 
     function shortContent(content,num){
-        if(content.length > 40){
-           return content.slice(0,num) + "..."
+        if(content.length > 100){
+           return content.slice(0,num) + "..." ;
+        }
+        else{
+            return content ;
         }
     }
 
@@ -24,7 +28,8 @@ const Blogs = () => {
                     return (
                         <div key={blog.id}>
                         <h2>{blog.title}</h2>
-                        <p>{shortContent(blog.content,50)}</p>
+                        <p>{shortContent(blog.content,100)}</p>
+                       <Link to={blog.title}>Learn more</Link>
                     </div>
                     )
                 })
