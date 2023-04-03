@@ -1,27 +1,30 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams , useLocation } from 'react-router-dom';
 const Blog = () => {
-    const {title} = useParams()
-    const [content,setContent] = useState('')
-    const [blogs,setBlogs] = useState([])
+    // const {title} = useParams()
+    const location = useLocation()
 
-    useEffect(()=>{
-        fetch('../../../data.json')
-        .then(res => res.json())
-        .then(datas => setBlogs(datas))
-    },[])
+    // const [content,setContent] = useState('')
+    // const [blogs,setBlogs] = useState([])
 
-    useEffect(()=>{
-        const blog = blogs.find(ct => ct.title === title)
-        if(blog){
-            setContent(blog.content)
-        }
-    },[blogs])
+    // useEffect(()=>{
+    //     fetch('../../../data.json')
+    //     .then(res => res.json())
+    //     .then(datas => setBlogs(datas))
+    // },[])
+
+    // useEffect(()=>{
+    //     const blog = blogs.find(ct => ct.title === title)
+    //     if(blog){
+    //         setContent(blog.content)
+    //     }
+    // },[blogs])
 
     return (
         <div>
-           <h2>{title}</h2> 
-           <p>{content}</p> 
+           <h2>{location.state.author}</h2> 
+           <h3>{location.state.title}</h3>
+           <p>{location.state.content}</p> 
         </div>
     );
 };

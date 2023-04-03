@@ -29,7 +29,7 @@ const Blogs = () => {
                         <div key={blog.id}>
                         <h2>{blog.title}</h2>
                         <p>{shortContent(blog.content,100)}</p>
-                       <Link to={blog.title}>Learn more</Link>
+                    <Link to={blog.title} state={blog}>Learn more</Link>
                     </div>
                     )
                 })
