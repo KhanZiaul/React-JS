@@ -10,15 +10,21 @@ const Blogs = () => {
         .then(datas => setBlogs(datas))
     },[])
 
+    function shortContent(content,num){
+        if(content.length > 40){
+           return content.slice(0,num) + "..."
+        }
+    }
+
     return (
         <div>
            <h2>Welcome in Blogs</h2>
             {
                 blogs.map(blog => {
                     return (
-                        <div>
+                        <div key={blog.id}>
                         <h2>{blog.title}</h2>
-                        <p>{blog.content}</p>
+                        <p>{shortContent(blog.content,50)}</p>
                     </div>
                     )
                 })
