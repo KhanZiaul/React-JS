@@ -10,6 +10,7 @@ import Router from './components/Root-Router/Router';
 import ErrorPage from './components/Error/ErrorPage';
 import Contact from './components/Contact/Contact';
 import Home from './components/Home/Home';
+import Show from './components/ShowData/Show';
 const router = createBrowserRouter([
   // Adding Router ------------------------------------
   // {
@@ -34,6 +35,15 @@ const router = createBrowserRouter([
     element : <Home></Home>,
     errorElement: <ErrorPage></ErrorPage>,
     children:[
+      {
+        path:'/',
+        element:<App></App>
+      },
+      {
+        path:'data',
+        element:<Show></Show>,
+        loader:() => fetch('https://jsonplaceholder.typicode.com/users')
+      },
       {
         path:'contact',
         element:<Contact></Contact>

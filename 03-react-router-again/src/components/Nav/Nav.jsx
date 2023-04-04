@@ -10,6 +10,7 @@ const Nav = () => {
             <a href="/root">Router</a> */}
             
             <Link to="/">Home</Link>
+            <Link to="/data">Data</Link>
             <Link to="/contact">Contact</Link>
             <Link to="/root">Router</Link>
         </nav>
