@@ -18,9 +18,14 @@ const Login = () => {
     })
     }
 
+    const signOutHandler = () =>{
+
+
+    }
     return (
         <div>
             <button onClick={googleHandler}>Log In</button>
+            <button onClick={signOutHandler}>sign out</button>
         </div>
     );
 };
