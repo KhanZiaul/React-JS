@@ -23,9 +23,9 @@ const Login = () => {
 
     }
     return (
-        <div>
-            <button className='bg-red-500' onClick={googleHandler}>Log In</button>
-            <button onClick={signOutHandler}>sign out</button>
+        <div className='flex justify-center gap-10 my-10'>
+            <button className='bg-sky-500 text-white px-5 py-3 rounded-md hover:text-sky-700' onClick={googleHandler}>Log In</button>
+            <button className='bg-sky-500 text-white px-5 py-3 rounded-md hover:text-sky-700' onClick={signOutHandler}>sign out</button>
         </div>
     );
 };
