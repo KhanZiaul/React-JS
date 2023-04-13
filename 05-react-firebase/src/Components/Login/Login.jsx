@@ -24,7 +24,7 @@ const Login = () => {
     }
     return (
         <div>
-            <button onClick={googleHandler}>Log In</button>
+            <button className='bg-red-500' onClick={googleHandler}>Log In</button>
             <button onClick={signOutHandler}>sign out</button>
         </div>
     );
