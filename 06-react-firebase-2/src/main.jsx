@@ -7,6 +7,8 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Header from './Components/Header/Header';
+import SignIn from './Components/SignIn/SignIn';
+import SignUp from './Components/SignUp/SignUp';
 
 const router = createBrowserRouter([
   {
@@ -14,8 +16,12 @@ const router = createBrowserRouter([
     element: <App></App>,
     children: [
       {
-        path: '/',
-        element: <Header></Header>
+        path: 'signin',
+        element: <SignIn></SignIn>
+      },
+      {
+        path: 'signup',
+        element: <SignUp></SignUp>
       }
     ]
   },
