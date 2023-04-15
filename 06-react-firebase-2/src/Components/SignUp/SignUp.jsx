@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from "firebase/auth";
 import app from '../Firebase/firebase.config';
 import { Link } from 'react-router-dom';
+import { EyeIcon } from '@heroicons/react/24/solid'
 
 const SignUp = () => {
 
     const auth = getAuth(app);
     const [errors, setErrors] = useState('')
+    const [show, setShow] = useState(true)
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -71,18 +73,25 @@ const SignUp = () => {
 
         });
     }
+
+    const eyeClick = () => {
+        setShow(!show)
+    }
     return (
         <>
             <form className='flex flex-col justify-center items-center my-10 gap-3 w-[25%] mx-auto border-2 p-5 bg-slate-300 rounded-md' onSubmit={handleSubmit}>
                 <h2 className='text-xl font-medium'>Please Sign up</h2>
-
                 <input className='border-2 px-4 py-2 block border-red-400' name='name' type="text" placeholder='Your name' required />
                 <br />
-
                 <input className='border-2 px-4 py-2 block border-red-400' name='email' type="email" placeholder='Your email' required />
+ 
                 <br />
 
-                <input className='border-2 px-4 py-2  border-red-400' name='password' type="password" placeholder='Your password' required />
+                <div className='relative'>
+                <input className='border-2 px-4 py-2  border-red-400' name='password' type={show ? 'password' : 'text'} placeholder='Your password' required />
+                <EyeIcon onClick={eyeClick} className="h-6 w-6 absolute right-3 top-3 cursor-pointer text-blue-500" />
+                </div>
+
                 <p className='py-3'>{errors}</p>
                 <button className='px-5 py-3 rounded-lg mt-5 bg-sky-500 text-white'>submit</button>
                 <p>already signed ? please<Link className='text-blue-700 ms-2' to='/signin'>sign in</Link></p>
