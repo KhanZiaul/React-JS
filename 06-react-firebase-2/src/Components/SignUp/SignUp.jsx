@@ -10,10 +10,33 @@ const SignUp = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        setErrors('')
         const Email = e.target.email.value;
         const Password = e.target.password.value;
-        console.log(Email, Password)
+        console.log(Password)
+
+        setErrors('')
+
+        if(!/(?=.{6,})/.test(Password)){
+            setErrors('Passwords should have 8 characters')
+            return ;
+        }
+        else if(!/(?=.*[a-z])/.test(Password)){
+            setErrors('Passwords should have at least one lower case')
+            return ;
+        }
+        else if(!/(?=.*[A-Z])/.test(Password)){
+            setErrors('Passwords should have at least one upper case')
+            return ;
+        }
+        else if(!/(?=.*\d)/.test(Password)){
+            setErrors('Passwords should have one digit')
+            return ;
+        }
+        else if(!/(?=.*[!@#$%^&*])/.test(Password)){
+            setErrors('Passwords should have one special character')
+            return ;
+        }
+
         createUserWithEmailAndPassword(auth, Email, Password)
             .then((userCredential) => {
                 const user = userCredential.user;
@@ -34,11 +57,6 @@ const SignUp = () => {
                 <input className='border-2 px-4 py-2 block border-red-400' name='email' type="email" placeholder='Your email' required />
                 <br />
                 <input className='border-2 px-4 py-2  border-red-400' name='password' type="password" placeholder='Your password' required/>
-                if(){
-
-                }
-
-                <p className='py-3'>{errors}</p>
                 <p className='py-3'>{errors}</p>
                 <button className='px-5 py-3 rounded-lg mt-5 bg-sky-500 text-white'>submit</button>
                <p>already signed ? please<Link className='text-blue-700 ms-2' to='/signin'>sign in</Link></p> 
