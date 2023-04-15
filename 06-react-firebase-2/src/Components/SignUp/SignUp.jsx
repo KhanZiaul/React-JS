@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import app from '../Firebase/firebase.config';
 import { Link } from 'react-router-dom';
 
@@ -12,8 +12,6 @@ const SignUp = () => {
         e.preventDefault();
         const Email = e.target.email.value;
         const Password = e.target.password.value;
-        console.log(Password)
-
         setErrors('')
 
         if(!/(?=.{6,})/.test(Password)){
@@ -40,6 +38,8 @@ const SignUp = () => {
         createUserWithEmailAndPassword(auth, Email, Password)
             .then((userCredential) => {
                 const user = userCredential.user;
+                userVarification(userCredential.user)
+                console.log(user)
             })
             .catch((error) => {
                 const errorMessage = error.message;
@@ -49,6 +49,13 @@ const SignUp = () => {
         e.target.reset()
     }
 
+    const userVarification = (user) => {
+        sendEmailVerification(user)
+        .then(() => {
+            alert('verify email address')
+          });
+        
+    }
 
     return (
         <>
