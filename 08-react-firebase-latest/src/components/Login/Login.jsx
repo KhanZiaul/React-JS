@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import { AppsContext } from '../AppContext/AppContext';
 
 const Login = () => {
-    const {signUser} = useContext(AppsContext)
+    const { signUser, resetUserPassword } = useContext(AppsContext)
     const [successfully, setSuccessfully] = useState('')
+    const userRef = useRef()
 
     function formSubmit(e) {
         e.preventDefault()
@@ -27,6 +28,23 @@ const Login = () => {
         e.target.reset()
     }
 
+    function fogotPassword() {
+        if (!userRef.current.value) {
+            alert('Please Enter Email')
+            return;
+        }
+
+        const email = userRef.current.value;
+        
+        resetUserPassword(email)
+            .then(() => {
+                alert('Password Reset Email Send')
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+            });
+    }
+
     return (
         <div>
             <div className="hero  bg-base-200">
@@ -40,7 +58,7 @@ const Login = () => {
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input type="email" name='email' placeholder="email" className="input input-bordered" required />
+                                <input ref={userRef} type="email" name='email' placeholder="email" className="input input-bordered" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
@@ -48,7 +66,7 @@ const Login = () => {
                                 </label>
                                 <input type="password" name='password' placeholder="password" className="input input-bordered" required />
                                 <label className="label">
-                                    <Link href="#" className="label-text-alt link link-hover">Forgot password?</Link>
+                                    <Link href="#" onClick={fogotPassword} className="label-text-alt link link-hover">Forgot password?</Link>
                                 </label>
                             </div>
                             <div>
