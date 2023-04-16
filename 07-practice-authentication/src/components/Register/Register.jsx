@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, signInWithPopup, updateProfile } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, sendEmailVerification, signInWithPopup, updateProfile } from "firebase/auth";
 import app from '../../Firebase/firebase.config';
 
 const Register = () => {
@@ -48,10 +48,13 @@ const Register = () => {
                 const user = userCredential.user;
                 console.log(user)
                 userProfileUpdate(userCredential.user, Name)
+                userEmailVerification(userCredential.user)
             })
             .catch((error) => {
                 const errorMessage = error.message;
             });
+
+            e.target.reset()
     }
 
     function userProfileUpdate(user, name) {
@@ -62,6 +65,14 @@ const Register = () => {
         }).catch((error) => {
         });
     }
+
+    function userEmailVerification(user) {
+        sendEmailVerification(user)
+        .then(() => {
+            alert('Email Verification Send')
+        });
+    }
+
     return (
         <div>
             <div className="hero bg-base-200">
