@@ -1,8 +1,33 @@
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { AppsContext } from '../AppContext/AppContext';
+import { updateProfile } from 'firebase/auth';
 
 const Register = () => {
 
+    const {name , createUser}= useContext(AppsContext)
+
+    function formSubmit(e) {
+        e.preventDefault()
+        const Name = e.target.name.value;
+        const Email = e.target.email.value;
+        const Password = e.target.password.value;
+
+        createUser(Email, Password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                console.log(user)
+                userProfileUpdate(userCredential.user, Name)
+                userEmailVerification(userCredential.user)
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+            });
+
+            e.target.reset()
+    }
+
+ 
     return (
         <div>
             <div className="hero bg-base-200">
@@ -10,7 +35,7 @@ const Register = () => {
                     <div className="text-center">
                         <h1 className="text-3xl font-semibold">Register</h1>
                     </div>
-                    <form className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                    <form onSubmit={formSubmit}  className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                         <div className="card-body">
                             <div className="form-control">
                                 <label className="label">
