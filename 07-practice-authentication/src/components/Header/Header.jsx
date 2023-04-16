@@ -9,9 +9,9 @@ const Header = () => {
                     <Link className="btn btn-primary normal-case text-xl">Login Form</Link>
                 </div>
                     <div className="flex gap-8">
-                        <Link >Profile </Link>
-                        <Link>Register</Link>
-                        <Link>Login</Link>
+                        <Link>Profile </Link>
+                        <Link to='/register'>Register</Link>
+                        <Link to='/login'>Login</Link>
                     </div>
             </div>
         </div>
