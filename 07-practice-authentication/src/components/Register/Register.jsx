@@ -7,8 +7,6 @@ const Register = () => {
 
     const auth = getAuth(app);
 
-    const userRef = useRef()
-
     const googleProvider = new GoogleAuthProvider();
 
     const githubProvider = new GithubAuthProvider();
@@ -86,7 +84,7 @@ const Register = () => {
                                 <label className="label">
                                     <span className="label-text">Name</span>
                                 </label>
-                                <input ref={userRef} type="text" name='name' placeholder="name" className="input input-bordered" required />
+                                <input type="text" name='name' placeholder="name" className="input input-bordered" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
