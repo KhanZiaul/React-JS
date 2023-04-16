@@ -1,7 +1,7 @@
 import React, { useContext, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { AppsContext } from '../AppContext/AppContext';
-import { updateProfile } from 'firebase/auth';
+import { sendEmailVerification, updateProfile } from 'firebase/auth';
 
 const Register = () => {
 
@@ -33,6 +33,13 @@ const Register = () => {
         }).then(() => {
             console.log(name)
         }).catch((error) => {
+        });
+    }
+
+    function userEmailVerification(user) {
+     sendEmailVerification(user)
+        .then(() => {
+            alert('Email Verification Send')
         });
     }
 
