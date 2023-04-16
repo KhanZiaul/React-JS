@@ -1,22 +1,26 @@
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, sendEmailVerification, signInWithPopup, updateProfile } from "firebase/auth";
+import app from '../../Firebase/firebase.config';
 
 const Login = () => {
-
-    const [users,setUsers] = useState({})
+    const auth = getAuth(app);
+    const [users, setUsers] = useState({})
+    const [successfully, setSuccessfully] = useState('')
 
     function formSubmit(e) {
         e.preventDefault()
+        setSuccessfully('')
         const Email = e.target.email.value;
         const Password = e.target.password.value;
-        console.log(Email, Password)
 
         signInWithEmailAndPassword(auth, Email, Password)
             .then((userCredential) => {
                 const user = userCredential.user;
                 console.log(user)
-     
+                setSuccessfully('Successfully Done')
+
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -52,6 +56,9 @@ const Login = () => {
                             </div>
                             <div>
                                 <p><small>Are you new ? </small> <Link to='/register' className='text-blue-600 underline hover:text-blue-800 cursor-pointer'>Register</Link></p>
+                            </div>
+                            <div >
+                                <p className='text-green-600'>{successfully}</p>
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Login</button>
