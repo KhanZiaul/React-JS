@@ -27,7 +27,15 @@ const Register = () => {
             e.target.reset()
     }
 
- 
+    function userProfileUpdate(user, name) {
+        updateProfile(user, {
+            displayName:name
+        }).then(() => {
+            console.log(name)
+        }).catch((error) => {
+        });
+    }
+
     return (
         <div>
             <div className="hero bg-base-200">
