@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, signInWithPopup } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, signInWithPopup, updateProfile } from "firebase/auth";
 import app from '../../Firebase/firebase.config';
 
 const Register = () => {
 
     const auth = getAuth(app);
+
+    const userRef = useRef()
 
     const googleProvider = new GoogleAuthProvider();
 
@@ -41,20 +43,25 @@ const Register = () => {
         const Name = e.target.name.value;
         const Email = e.target.email.value;
         const Password = e.target.password.value;
-
-        console.log(Name, Password, Email)
-
         createUserWithEmailAndPassword(auth, Email, Password)
             .then((userCredential) => {
                 const user = userCredential.user;
                 console.log(user)
+                userProfileUpdate(userCredential.user, Name)
             })
             .catch((error) => {
                 const errorMessage = error.message;
             });
     }
 
-
+    function userProfileUpdate(user, name) {
+        updateProfile(user, {
+            displayName:name
+        }).then(() => {
+            console.log(name)
+        }).catch((error) => {
+        });
+    }
     return (
         <div>
             <div className="hero bg-base-200">
@@ -68,7 +75,7 @@ const Register = () => {
                                 <label className="label">
                                     <span className="label-text">Name</span>
                                 </label>
-                                <input type="text" name='name' placeholder="name" className="input input-bordered" required />
+                                <input ref={userRef} type="text" name='name' placeholder="name" className="input input-bordered" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
