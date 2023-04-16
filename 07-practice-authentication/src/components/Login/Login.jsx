@@ -1,7 +1,31 @@
-import React from 'react';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
+
+    const [users,setUsers] = useState({})
+
+    function formSubmit(e) {
+        e.preventDefault()
+        const Email = e.target.email.value;
+        const Password = e.target.password.value;
+        console.log(Email, Password)
+
+        signInWithEmailAndPassword(auth, Email, Password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                console.log(user)
+     
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+
+            });
+
+        e.target.reset()
+    }
+
     return (
         <div>
             <div className="hero  bg-base-200">
@@ -9,7 +33,7 @@ const Login = () => {
                     <div className="text-center">
                         <h1 className="text-3xl font-semibold">Login</h1>
                     </div>
-                    <form className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                    <form onSubmit={formSubmit} className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                         <div className="card-body">
                             <div className="form-control">
                                 <label className="label">
