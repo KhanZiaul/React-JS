@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, signInWithPopup } from "firebase/auth";
 import app from '../../Firebase/firebase.config';
 
 const Register = () => {
@@ -15,9 +15,7 @@ const Register = () => {
 
         signInWithPopup(auth, googleProvider)
             .then((result) => {
-
                 const googleUser = result.user;
-                console.log(googleUser)
 
             }).catch((error) => {
 
@@ -29,21 +27,31 @@ const Register = () => {
 
         signInWithPopup(auth, githubProvider)
             .then((result) => {
+
                 const githubUser = result.user;
-                console.log(githubUser)
 
             }).catch((error) => {
+
                 const errorMessage = error.message;
             });
     }
 
-    function formSubmit(e){
+    function formSubmit(e) {
         e.preventDefault()
         const Name = e.target.name.value;
         const Email = e.target.email.value;
         const Password = e.target.password.value;
 
-        console.log(Name , Password , Email)
+        console.log(Name, Password, Email)
+
+        createUserWithEmailAndPassword(auth, Email, Password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                console.log(user)
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+            });
     }
 
 
