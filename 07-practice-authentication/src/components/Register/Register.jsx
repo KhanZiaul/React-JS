@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { GoogleAuthProvider, getAuth } from "firebase/auth";
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import app from '../../Firebase/firebase.config';
 
 const Register = () => {
@@ -10,7 +10,17 @@ const Register = () => {
     const googleProvider = new GoogleAuthProvider();
 
     function googleHandler() {
-        console.log('click')    
+        console.log('click')
+
+        signInWithPopup(auth, googleProvider)
+            .then((result) => {
+
+                const user = result.user;
+                console.log(user)
+            }).catch((error) => {
+
+                const errorMessage = error.message;
+            });
     }
 
     return (
@@ -38,7 +48,7 @@ const Register = () => {
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password" name='password' placeholder="password" className="input input-bordered" required/>
+                                <input type="password" name='password' placeholder="password" className="input input-bordered" required />
                             </div>
                             <div>
                                 <p><small>Already have an account ? </small> <Link to='/login' className='text-blue-600 underline hover:text-blue-800 cursor-pointer'>Login</Link></p>
