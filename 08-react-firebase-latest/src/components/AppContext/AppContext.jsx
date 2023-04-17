@@ -8,6 +8,8 @@ const auth = getAuth(app);
 const AppContext = ({ children }) => {
     const [loginEmail, setloginEmail] = useState({})
 
+    const [loading, setLoading] = useState(true)
+
     const createUser = (email, password) => {
 
         return createUserWithEmailAndPassword(auth, email, password)
@@ -26,6 +28,7 @@ const AppContext = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             console.log(user)
             setloginEmail(user)
+            setLoading(false)
         });
 
         return ()=>{
@@ -40,6 +43,7 @@ const AppContext = ({ children }) => {
 
     const users = {
         loginEmail,
+        loading,
         createUser,
         signUser,
         resetUserPassword,

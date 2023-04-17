@@ -25,6 +25,7 @@ const Header = () => {
                     <Link to='/register'>Register</Link>
                     <Link to='/login'>Login</Link>
                     <Link>Profile </Link>
+                    <Link to='/orders'>Orders </Link>
                     <div>
                         {loginEmail ?
                             <div className='flex items-center gap-5'>
