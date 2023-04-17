@@ -4,14 +4,14 @@ import { AppsContext } from '../AppContext/AppContext';
 
 const Header = () => {
 
-    const { loginEmail , logOut } = useContext(AppsContext)
+    const { loginEmail, logOut } = useContext(AppsContext)
 
-    function signoutHandler(){
+    function signoutHandler() {
         logOut().then(() => {
             alert('Log Out Successfully')
-          }).catch((error) => {
-            
-          });
+        }).catch((error) => {
+
+        });
     }
 
     return (
@@ -24,8 +24,13 @@ const Header = () => {
                 <div className="flex gap-8">
                     <Link to='/register'>Register</Link>
                     <Link to='/login'>Login</Link>
-                    <Link to='/profile'>Profile </Link>
-                    <Link to='/orders'>Orders </Link>
+                    {
+                        loginEmail && <Link to='/profile'>Profile </Link>
+                    }
+                    {
+                        loginEmail && <Link to='/orders'>Orders </Link>
+                    }
+
                     <div>
                         {loginEmail ?
                             <div className='flex items-center gap-5'>
