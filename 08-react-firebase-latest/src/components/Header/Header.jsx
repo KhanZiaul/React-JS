@@ -4,7 +4,15 @@ import { AppsContext } from '../AppContext/AppContext';
 
 const Header = () => {
 
-    const { loginEmail } = useContext(AppsContext)
+    const { loginEmail , logOut } = useContext(AppsContext)
+
+    function signoutHandler(){
+        logOut().then(() => {
+            alert('Log Out Successfully')
+          }).catch((error) => {
+            
+          });
+    }
 
     return (
         <div>
@@ -21,7 +29,7 @@ const Header = () => {
                         {loginEmail ?
                             <div className='flex items-center gap-5'>
                                 <p>{loginEmail.email}</p>
-                                <button className='bg-sky-700 px-4 py-2 rounded-md'>Sign Out</button>
+                                <button onClick={signoutHandler} className='bg-sky-700 px-4 py-2 rounded-md'>Sign Out</button>
                             </div>
                             :
                             <Link to='/login' className='bg-sky-700 px-4 py-2 rounded-md'>Log in</Link>
