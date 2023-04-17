@@ -12,6 +12,7 @@ import Login from './components/Login/Login';
 import AppContext from './components/AppContext/AppContext';
 import PrivateRouter from './components/PrivateRouter/PrivateRouter';
 import Orders from './components/Orders/Orders';
+import Profile from './components/Profile/Profile';
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,14 @@ const router = createBrowserRouter([
       {
         path: 'login',
         element: <Login></Login>
+      },
+      {
+        path: 'orders',
+        element: <PrivateRouter> <Orders> </Orders> </PrivateRouter>
+      },
+      {
+        path: 'profile',
+        element: <PrivateRouter> <Profile></Profile> </PrivateRouter>
       },
       {
         path: 'orders',

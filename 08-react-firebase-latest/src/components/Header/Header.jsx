@@ -24,7 +24,7 @@ const Header = () => {
                 <div className="flex gap-8">
                     <Link to='/register'>Register</Link>
                     <Link to='/login'>Login</Link>
-                    <Link>Profile </Link>
+                    <Link to='/profile'>Profile </Link>
                     <Link to='/orders'>Orders </Link>
                     <div>
                         {loginEmail ?
