@@ -26,7 +26,6 @@ const AppContext = ({ children }) => {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
-            console.log(user)
             setloginEmail(user)
             setLoading(false)
         });

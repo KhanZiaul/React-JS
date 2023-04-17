@@ -4,7 +4,12 @@ import { Navigate } from 'react-router-dom';
 
 const PrivateRouter = ({children}) => {
 
-    const {loginEmail} = useContext(AppsContext)
+    const {loginEmail , loading} = useContext(AppsContext)
+
+    if(loading){
+        
+        return <progress className="progress w-56"></progress>
+    }
 
     if(loginEmail) {
 
