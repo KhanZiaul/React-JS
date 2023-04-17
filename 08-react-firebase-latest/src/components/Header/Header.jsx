@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AppsContext } from '../AppContext/AppContext';
 
 const Header = () => {
+
+    const {loginEmail} = useContext(AppsContext)
+
     return (
         <div>
             <div className="navbar bg-slate-500 text-white px-10">
