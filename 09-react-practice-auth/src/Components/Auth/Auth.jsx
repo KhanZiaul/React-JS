@@ -7,7 +7,7 @@ export const parentAuth = createContext(null)
 const Auth = ({children}) => {
     const auth = getAuth(app);
 
-    function createUser(auth, email, password){
+    function createUser(email, password){
         return createUserWithEmailAndPassword(auth, email, password)
     }
 

@@ -2,11 +2,22 @@ import React, { useContext } from 'react';
 import { parentAuth } from '../Auth/Auth';
 
 const Register = () => {
-    const {createUser} = useContext(parentAuth)
+    const { createUser } = useContext(parentAuth)
 
-    function formSubmit(e){
+    function formSubmit(e) {
         e.preventDefault()
-        console.log('click')
+        const Name = e.target.name.value;
+        const Email = e.target.email.value;
+        const Password = e.target.password.value;
+        console.log(Name, Email, Password)
+
+        createUser(Email, Password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+            });
     }
 
     return (
@@ -22,21 +33,21 @@ const Register = () => {
                             <label className="label">
                                 <span className="label-text">Name</span>
                             </label>
-                            <input type="text" placeholder="name" className="input input-bordered" />
+                            <input type="text" name='name' placeholder="name" className="input input-bordered" />
                         </div>
 
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="email" placeholder="email" className="input input-bordered" />
+                            <input type="email" name='email' placeholder="email" className="input input-bordered" />
                         </div>
 
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password" placeholder="password" className="input input-bordered" />
+                            <input type="password" placeholder="password" name='password' className="input input-bordered" />
                             <label className="label">
                                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
