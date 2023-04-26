@@ -11,6 +11,7 @@ import {
 import About from './Components/About/About.jsx';
 import Login from './Components/Login/Login.jsx';
 import Register from './Components/Register/Register.jsx';
+import PrivateSector from './Components/PrivateSector/PrivateSector.jsx';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
      {
       path:'register',
       element:<Register></Register>
+     },
+     {
+      path:'private',
+      element:<PrivateSector></PrivateSector>
      }
     ]
   }
