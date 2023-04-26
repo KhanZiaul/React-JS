@@ -1,9 +1,12 @@
 import React from 'react';
+import Header from './Components/Header/Header';
+import { Outlet } from 'react-router-dom';
 
 const App = () => {
   return (
     <div>
-      <h2 className='text-5xl text-red-500'>agbdbgvadb</h2>
+      <Header></Header>
+     <Outlet></Outlet>
     </div>
   );
 };
