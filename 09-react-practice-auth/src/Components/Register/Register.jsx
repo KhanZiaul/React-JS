@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { parentAuth } from '../Auth/Auth';
-import { updateProfile } from 'firebase/auth';
+import { sendEmailVerification, updateProfile } from 'firebase/auth';
 
 const Register = () => {
     const { createUser } = useContext(parentAuth)
@@ -13,20 +13,30 @@ const Register = () => {
         createUser(Email, Password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                userProfile(Name,userCredential.user)
+                userProfile(Name, userCredential.user)
+                verificationUser(userCredential.user)
                 console.log(user)
             })
             .catch((error) => {
                 const errorMessage = error.message;
             });
+
+        e.target.reset()
     }
 
-    function userProfile(name,user) {
+    function userProfile(name, user) {
         updateProfile(user, {
-            displayName:name
+            displayName: name
         }).then(() => {
         }).catch((error) => {
         });
+    }
+
+    function verificationUser(user) {
+        sendEmailVerification(user)
+            .then(() => {
+                alert('Email Varification Send')
+            });
     }
 
     return (
@@ -57,9 +67,6 @@ const Register = () => {
                                 <span className="label-text">Password</span>
                             </label>
                             <input type="password" placeholder="password" name='password' className="input input-bordered" />
-                            <label className="label">
-                                <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                            </label>
                         </div>
 
                         <div className="form-control mt-6">
