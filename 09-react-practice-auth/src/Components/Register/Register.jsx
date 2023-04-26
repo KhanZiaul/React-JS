@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { parentAuth } from '../Auth/Auth';
+import { updateProfile } from 'firebase/auth';
 
 const Register = () => {
     const { createUser } = useContext(parentAuth)
@@ -9,15 +10,23 @@ const Register = () => {
         const Name = e.target.name.value;
         const Email = e.target.email.value;
         const Password = e.target.password.value;
-        console.log(Name, Email, Password)
-
         createUser(Email, Password)
             .then((userCredential) => {
                 const user = userCredential.user;
+                userProfile(Name,userCredential.user)
+                console.log(user)
             })
             .catch((error) => {
                 const errorMessage = error.message;
             });
+    }
+
+    function userProfile(name,user) {
+        updateProfile(user, {
+            displayName:name
+        }).then(() => {
+        }).catch((error) => {
+        });
     }
 
     return (
