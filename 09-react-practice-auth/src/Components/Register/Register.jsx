@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { parentAuth } from '../Auth/Auth';
 
 const Register = () => {
+    const {createUser} = useContext(parentAuth)
+
+    function formSubmit(e){
+        e.preventDefault()
+        console.log('click')
+    }
+
     return (
         <div className="hero bg-base-200">
             <div className="hero-content flex-col">
@@ -8,7 +16,7 @@ const Register = () => {
                     <h1 className="text-3xl font-bold mb-7">Register</h1>
                 </div>
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                    <div className="card-body">
+                    <form onSubmit={formSubmit} className="card-body">
 
                         <div className="form-control">
                             <label className="label">
@@ -37,7 +45,7 @@ const Register = () => {
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Register</button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
