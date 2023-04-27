@@ -18,7 +18,7 @@ const Login = () => {
         signIn(Email, Password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                navigate(path)
+                navigate(path,{replace:true})
             })
             .catch((error) => {
                 const errorMessage = error.message;
