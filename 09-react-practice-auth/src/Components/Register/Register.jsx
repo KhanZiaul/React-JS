@@ -3,7 +3,7 @@ import { parentAuth } from '../Auth/Auth';
 import { sendEmailVerification, updateProfile } from 'firebase/auth';
 
 const Register = () => {
-    const { createUser } = useContext(parentAuth)
+    const { createUser, resetUserPassword } = useContext(parentAuth)
 
     function formSubmit(e) {
         e.preventDefault()
@@ -16,6 +16,15 @@ const Register = () => {
                 userProfile(Name, userCredential.user)
                 verificationUser(userCredential.user)
                 console.log(user)
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+            });
+
+        resetUserPassword(Email)
+            .then(() => {
+
+                alert('Send Password Reset Email')
             })
             .catch((error) => {
                 const errorMessage = error.message;

@@ -1,6 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { parentAuth } from '../Auth/Auth';
 
 const Login = () => {
+
+    const { resetUserPassword } = useContext(parentAuth)
+
+    function formSubmit(e) {
+        e.preventDefault()
+        const Email = e.target.email.value;
+        const Password = e.target.password.value;
+        
+        e.target.reset()
+    }
+
+    function resetPass() {
+        resetUserPassword(Email)
+            .then(() => {
+
+                alert('Send Password Reset Email')
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+            });
+    }
     return (
         <div className="hero bg-base-200">
             <div className="hero-content flex-col">
@@ -8,7 +30,7 @@ const Login = () => {
                     <h1 className="text-3xl font-bold mb-7">Login</h1>
                 </div>
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                    <div className="card-body">
+                    <form onSubmit={formSubmit} className="card-body">
 
                         <div className="form-control">
                             <label className="label">
@@ -23,14 +45,14 @@ const Login = () => {
                             </label>
                             <input type="password" placeholder="password" className="input input-bordered" />
                             <label className="label">
-                                <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                <a onClick={resetPass} href="#" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
                         </div>
 
                         <div className="form-control mt-6">
                             <button className="btn btn-primary">Login</button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
