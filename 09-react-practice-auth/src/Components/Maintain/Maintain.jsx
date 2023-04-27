@@ -11,7 +11,7 @@ const Maintain = ({ children }) => {
         return children ;
     }
 
-    return <Navigate to='/login'> </Navigate>
+    return <Navigate to='/login' replace={true}> </Navigate>
 };
 
 export default Maintain;

@@ -53,7 +53,7 @@ const AppContext = ({ children }) => {
         <AppsContext.Provider value={users}>
             {children}
         </AppsContext.Provider>
-    ); { }
+    );
 };
 
 export default AppContext;

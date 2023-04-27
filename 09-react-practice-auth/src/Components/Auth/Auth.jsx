@@ -31,18 +31,20 @@ const Auth = ({ children }) => {
 
     const info = {
         isUser,
+        isLoading,
         createUser,
         resetUserPassword,
         signIn,
-        logOut,
-        isLoading
+        logOut
     }
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, user => {
             setIsUser(user)
             setloading(false)
         });
-        return unsubscribe() ;
+        return  ()=>{
+            unsubscribe()
+        }
     },[])
 
     return (
