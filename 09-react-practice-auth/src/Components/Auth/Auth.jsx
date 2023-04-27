@@ -12,6 +12,7 @@ const Auth = ({ children }) => {
     const [isLoading, setloading] = useState(true)
 
     function createUser(email, password) {
+        setloading(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
@@ -20,7 +21,7 @@ const Auth = ({ children }) => {
     }
 
     function signIn(email, password) {
-
+        setloading(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
 

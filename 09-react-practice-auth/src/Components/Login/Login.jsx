@@ -1,11 +1,16 @@
 import React, { useContext, useRef } from 'react';
 import { parentAuth } from '../Auth/Auth';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
     const { resetUserPassword, signIn } = useContext(parentAuth)
     const userReference = useRef()
+    const location = useLocation()
+    console.log(location)
+    const navigate = useNavigate();
 
+    const path = location?.state?.from?.pathname || '/about'
     function formSubmit(e) {
         e.preventDefault()
         const Email = e.target.email.value;
@@ -13,7 +18,7 @@ const Login = () => {
         signIn(Email, Password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                console.log(user)
+                navigate(path)
             })
             .catch((error) => {
                 const errorMessage = error.message;
