@@ -13,6 +13,7 @@ import Login from './Components/Login/Login.jsx';
 import Register from './Components/Register/Register.jsx';
 import PrivateSector from './Components/PrivateSector/PrivateSector.jsx';
 import Auth from './Components/Auth/Auth.jsx';
+import Maintain from './Components/Maintain/Maintain.jsx';
 
 const router = createBrowserRouter([
   {
@@ -33,7 +34,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'private',
-        element: <PrivateSector></PrivateSector>
+        element: <Maintain> <PrivateSector></PrivateSector> </Maintain>
       }
     ]
   }

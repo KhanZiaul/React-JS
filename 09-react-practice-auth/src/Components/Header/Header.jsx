@@ -3,7 +3,14 @@ import { Link } from 'react-router-dom';
 import { parentAuth } from '../Auth/Auth';
 
 const Header = () => {
-    const {isUser} = useContext(parentAuth)
+    const { isUser, logOut } = useContext(parentAuth)
+
+    function logOutHandler() {
+        logOut().then(() => {
+            alert(' Sign-out successful')
+        }).catch((error) => {
+        });
+    }
     return (
         <div>
             <div className="navbar bg-base-300 px-10">
@@ -12,13 +19,15 @@ const Header = () => {
                 </div>
                 <div className="flex gap-5">
                     {
-                        isUser ? 
-                        <div className='flex items-center gap-5'>
-                            <p> {isUser.email }</p>
-                            <button className='px-4 py-2 rounded-xl bg-blue-600 text-white cursor-pointer hover:bg-blue-900'>sign out</button> 
-                        </div>
-                        : 
-                        ''
+                        isUser ?
+                            <div className='flex items-center gap-5'>
+                                <p> {isUser.email}</p>
+                                <button onClick={logOutHandler} className='px-4 py-2 rounded-xl bg-blue-600 text-white cursor-pointer hover:bg-blue-900'>sign out</button>
+                            </div>
+                            :
+                            <Link to='/login'>
+                                <button className='px-4 py-2 rounded-xl bg-blue-600 text-white cursor-pointer hover:bg-blue-900'>sign in</button>
+                            </Link>
                     }
                     <Link to='/about'>About Us</Link>
                     <Link to='/login'>Login</Link>
