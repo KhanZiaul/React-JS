@@ -1,11 +1,13 @@
-import React, { createContext } from 'react';
-import { createUserWithEmailAndPassword, getAuth, sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
+import React, { createContext, useEffect, useState } from 'react';
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth";
 import app from '../Firebase/Firebase';
 
 export const parentAuth = createContext(null)
 
 const Auth = ({ children }) => {
     const auth = getAuth(app);
+
+    const [isUser, setIsUser] = useState(null)
 
     function createUser(email, password) {
         return createUserWithEmailAndPassword(auth, email, password)
@@ -21,11 +23,17 @@ const Auth = ({ children }) => {
     }
 
     const info = {
-        user: 'khan zia',
+        isUser,
         createUser,
         resetUserPassword,
         signIn
     }
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, user => {
+            setIsUser(user)
+        });
+        return unsubscribe() ;
+    }, [])
 
     return (
         <parentAuth.Provider value={info}>
