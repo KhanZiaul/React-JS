@@ -7,8 +7,9 @@ export const parentAuth = createContext(null)
 const Auth = ({ children }) => {
 
     const auth = getAuth(app);
-    
-    const [isUser, setIsUser] = useState(null)
+
+    const [isUser, setIsUser] = useState({})
+    const [isLoading, setloading] = useState(true)
 
     function createUser(email, password) {
         return createUserWithEmailAndPassword(auth, email, password)
@@ -33,11 +34,13 @@ const Auth = ({ children }) => {
         createUser,
         resetUserPassword,
         signIn,
-        logOut
+        logOut,
+        isLoading
     }
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, user => {
             setIsUser(user)
+            setloading(false)
         });
         return unsubscribe() ;
     },[])

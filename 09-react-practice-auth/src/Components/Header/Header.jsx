@@ -7,7 +7,6 @@ const Header = () => {
 
     function logOutHandler() {
         logOut().then(() => {
-            alert(' Sign-out successful')
         }).catch((error) => {
         });
     }
