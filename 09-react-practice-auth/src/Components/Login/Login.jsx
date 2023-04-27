@@ -3,14 +3,21 @@ import { parentAuth } from '../Auth/Auth';
 
 const Login = () => {
 
-    const { resetUserPassword } = useContext(parentAuth)
+    const { resetUserPassword, signIn } = useContext(parentAuth)
     const userReference = useRef()
 
     function formSubmit(e) {
         e.preventDefault()
         const Email = e.target.email.value;
         const Password = e.target.password.value;
-
+        signIn(Email, Password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                console.log(user)
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+            });
         e.target.reset()
     }
 
@@ -46,7 +53,7 @@ const Login = () => {
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password" placeholder="password"  name='password' className="input input-bordered" />
+                            <input type="password" placeholder="password" name='password' className="input input-bordered" />
                             <label className="label">
                                 <a onClick={resetPass} href="#" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
