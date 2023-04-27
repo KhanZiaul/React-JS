@@ -1,19 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import { parentAuth } from '../Auth/Auth';
 
 const Login = () => {
 
     const { resetUserPassword } = useContext(parentAuth)
+    const userReference = useRef()
 
     function formSubmit(e) {
         e.preventDefault()
         const Email = e.target.email.value;
         const Password = e.target.password.value;
-        
+
         e.target.reset()
     }
 
     function resetPass() {
+        const Email = userReference.current.value
         resetUserPassword(Email)
             .then(() => {
 
@@ -23,6 +25,7 @@ const Login = () => {
                 const errorMessage = error.message;
             });
     }
+
     return (
         <div className="hero bg-base-200">
             <div className="hero-content flex-col">
@@ -36,14 +39,14 @@ const Login = () => {
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="email" placeholder="email" className="input input-bordered" />
+                            <input type="email" ref={userReference} name='email' placeholder="email" className="input input-bordered" />
                         </div>
 
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password" placeholder="password" className="input input-bordered" />
+                            <input type="password" placeholder="password"  name='password' className="input input-bordered" />
                             <label className="label">
                                 <a onClick={resetPass} href="#" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
